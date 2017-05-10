@@ -47,11 +47,13 @@ public class Invoice {
         double discount= this.amount * this.customer.getDiscount() / 100;
         return this.amount - discount;
     }
-    private void recaulculateAmount(){//Recalcula el total de la factura despues de una modificacion
+        // This method gets the invoice total amount (before any possible discount).
+    // It iterates througouht the items ArrayList to accumulate each line total.
+    public void recalculateAmount() {
         this.amount = 0;
         
-        for (InvoiceItem item : items) {
-            this.amount += item.getTotal();
+        for(InvoiceItem tempItem : items) {
+            this.amount += tempItem.getTotal();
         }
     }
     public String getCustomerName(){//Obtiene el nombre del cliente
